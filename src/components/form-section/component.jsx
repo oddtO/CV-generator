@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
+import styles from "./form-section.module.scss";
 export default function FormSection({ children, sectionName }) {
   return (
-    <fieldset>
+    <fieldset className={styles.section}>
       <legend>{sectionName}</legend>
       {children}
     </fieldset>
