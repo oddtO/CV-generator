@@ -1,0 +1,10 @@
+.output-wrapper {
+  background-color: rgb(0 0 0 / 50%);
+
+  @media screen and (width <= 900px) {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+  }
+}

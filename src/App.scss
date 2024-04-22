@@ -1,0 +1,24 @@
+#root {
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background-color: #fff;
+  position: relative;
+
+  > :first-child {
+    flex: 1;
+  }
+
+  > :nth-child(2) {
+    flex: 2;
+  }
+
+  > :nth-child(3) {
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+  }
+
+  @media screen and (width <= 900px) {
+  }
+}
