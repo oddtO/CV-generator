@@ -1,6 +1,6 @@
 import "./reset.css";
 import { useState } from "react";
-import GeneratorForm from "./components/generator-form/component";
+import Main from "./components/main/component";
 import OutputResume from "./components/output/component";
 import "./App.scss";
 
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <GeneratorForm></GeneratorForm>
+      <Main></Main>
       {isOutputVisible && <OutputResume></OutputResume>}
       <button>Show/Hide</button>
     </>
