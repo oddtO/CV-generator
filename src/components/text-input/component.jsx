@@ -3,13 +3,24 @@ import styles from "./text-input.module.scss";
 export default function TextInput({
   labelText,
   name,
+  onChange,
+  dataId = "",
+  value = "",
   type = "text",
-  regex = "*",
+  regex = ".*",
 }) {
   return (
-    <label htmlFor={name} className={styles["text-input"]}>
+    <label htmlFor={name + dataId} className={styles["text-input"]}>
       <span>{labelText}</span>
-      <input type={type} name={name} id={name} pattern={regex} />
+      <input
+        type={type}
+        name={name + dataId}
+        id={name + dataId}
+        data-field-name={name}
+        pattern={regex}
+        onChange={onChange}
+        value={value}
+      />
     </label>
   );
 }
