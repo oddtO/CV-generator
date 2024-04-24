@@ -1,18 +1,35 @@
 import { useState } from "react";
-import styles from "./work-experience-list.module.scss";
+import styles from "../multi-list/at-top-delete-btn.module.scss";
 import MultiList from "../multi-list/component";
 class JobPositionExperience {
   static biggestId = 0;
   static keyToLabelMap = new Map([
     ["job-title", "Job title"],
     ["company", "Company"],
-    ["city", "City"],
+    ["from", "From"],
+    ["to", "To"],
+    ["description", "Your responsibilities"],
   ]);
-  constructor(jobTitle = "", company = "", city = "") {
+  static keyToInputType = new Map([
+    ["job-title", "text"],
+    ["company", "text"],
+    ["from", "date"],
+    ["to", "date"],
+    ["description", "textarea"],
+  ]);
+  constructor(
+    jobTitle = "",
+    company = "",
+    from = undefined,
+    to = undefined,
+    description = "",
+  ) {
     this.id = JobPositionExperience.biggestId++;
     this["job-title"] = jobTitle;
     this.company = company;
-    this.city = city;
+    this.from = from;
+    this.to = to;
+    this.description = description;
   }
 }
 
@@ -20,7 +37,7 @@ const defaultJobPosition = new JobPositionExperience();
 export default function WorkExperienceList() {
   const [jobExperiences, setJobExperiences] = useState([defaultJobPosition]);
   return (
-    <div className={styles["work-exp"]}>
+    <div className={styles["config-delete-btn"]}>
       <MultiList
         listItems={jobExperiences}
         setListItems={setJobExperiences}

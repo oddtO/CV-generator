@@ -14,7 +14,7 @@ const defaultSkill = new Skill();
 export default function SkillsList() {
   const [skills, setSkills] = useState([defaultSkill]);
   return (
-    <div className={styles.skills}>
+    <div className={styles["config-delete-btn"]}>
       <MultiList
         listItems={skills}
         setListItems={setSkills}
