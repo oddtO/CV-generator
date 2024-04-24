@@ -1,10 +1,13 @@
+import styles from "./removable-input-list.module.scss";
 export default function RemovableInputList({ removeFunc, children }) {
   return (
-    <div>
+    <div className={styles["input-list"]}>
       {children}
-      <button type="button" onClick={removeFunc}>
-        Remove
-      </button>
+      <button
+        type="button"
+        onClick={removeFunc}
+        className={styles.remover}
+      ></button>
     </div>
   );
 }
