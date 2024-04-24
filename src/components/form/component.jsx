@@ -3,6 +3,7 @@ import TextInput from "../text-input/component";
 import styles from "./form.module.scss";
 import WorkExperienceList from "../work-experience-list/component";
 import SkillsList from "../skills-list/component";
+import EducationList from "../education-list/component";
 export default function Form() {
   return (
     <form action="" className={styles["cv-form"]}>
@@ -16,6 +17,9 @@ export default function Form() {
           name="phone-number"
         ></TextInput>
         <TextInput type="email" labelText="Email" name="email"></TextInput>
+      </FormSection>
+      <FormSection sectionName="Education">
+        <EducationList></EducationList>
       </FormSection>
       <FormSection sectionName="Work experience">
         <WorkExperienceList></WorkExperienceList>
