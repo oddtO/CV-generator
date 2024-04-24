@@ -12,15 +12,27 @@ export default function TextInput({
   return (
     <label htmlFor={name + dataId} className={styles["text-input"]}>
       <span>{labelText}</span>
-      <input
-        type={type}
-        name={name + dataId}
-        id={name + dataId}
-        data-field-name={name}
-        pattern={regex}
-        onChange={onChange}
-        value={value}
-      />
+
+      {type === "textarea" ? (
+        <textarea
+          name={name + dataId}
+          id={name + dataId}
+          data-field-name={name}
+          pattern={regex}
+          onChange={onChange}
+          value={value}
+        ></textarea>
+      ) : (
+        <input
+          type={type}
+          name={name + dataId}
+          id={name + dataId}
+          data-field-name={name}
+          pattern={regex}
+          onChange={onChange}
+          value={value}
+        />
+      )}
     </label>
   );
 }

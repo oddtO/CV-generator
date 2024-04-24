@@ -50,6 +50,7 @@ export default function MultiList({
                     dataId={keyListItem.id}
                     onChange={stateChanger}
                     value={keyListItem[key]}
+                    type={ListItemClass.keyToInputType.get(key)}
                   ></TextInput>
                 );
               })}
