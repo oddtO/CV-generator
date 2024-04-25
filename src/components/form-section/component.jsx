@@ -11,5 +11,8 @@ export default function FormSection({ children, sectionName }) {
 
 FormSection.propTypes = {
   sectionName: PropTypes.string.isRequired,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+  ]),
 };

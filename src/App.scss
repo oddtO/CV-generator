@@ -1,6 +1,9 @@
+@use "breakpoints";
+
 #root {
   max-width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   background-color: #fff;
   position: relative;
@@ -16,10 +19,15 @@
     flex: 2;
   }
 
-  > :nth-child(3) {
+  > button {
     position: absolute;
     bottom: 2em;
     right: 2em;
+    display: none;
+
+    @media screen and #{breakpoints.$mobile} {
+      display: block;
+    }
   }
 
   @media screen and (width <= 900px) {

@@ -11,7 +11,12 @@ function App() {
     <>
       <Main></Main>
       {isOutputVisible && <OutputResume></OutputResume>}
-      <button>Show/Hide</button>
+      <button
+        type="button"
+        onClick={() => setOutputVisibility(!isOutputVisible)}
+      >
+        Show/Hide
+      </button>
     </>
   );
 }

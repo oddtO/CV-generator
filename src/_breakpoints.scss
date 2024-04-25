@@ -1,0 +1,3 @@
+@use "sass:string";
+
+$mobile: string.unquote("(width <= 900px)");
