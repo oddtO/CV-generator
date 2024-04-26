@@ -1,7 +1,7 @@
 import "./reset.css";
 import { useState } from "react";
 import Main from "./components/main/component";
-import OutputResume from "./components/output/component";
+import { OutputResume } from "./components/output/component";
 import "./App.scss";
 
 function App() {
