@@ -1,5 +1,14 @@
 import PropTypes from "prop-types";
 import styles from "./text-input.module.scss";
+import { useEffect, useRef } from "react";
+const onfocusHandler = () => {
+  const pdfToggler = document.querySelector("#pdf-viewer-toggler");
+  pdfToggler.style.top = "250px";
+};
+const onblurHandler = () => {
+  const pdfToggler = document.querySelector("#pdf-viewer-toggler");
+  setTimeout(() => (pdfToggler.style.top = ""), 500);
+};
 export default function TextInput({
   labelText,
   name,
@@ -15,6 +24,8 @@ export default function TextInput({
 
       {type === "textarea" ? (
         <textarea
+          onFocus={onfocusHandler}
+          onBlur={onblurHandler}
           name={name + dataId}
           id={name + dataId}
           data-field-name={name}
@@ -24,6 +35,8 @@ export default function TextInput({
         ></textarea>
       ) : (
         <input
+          onFocus={onfocusHandler}
+          onBlur={onblurHandler}
           type={type}
           name={name + dataId}
           id={name + dataId}

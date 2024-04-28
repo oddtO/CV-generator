@@ -20,12 +20,13 @@
     flex: 2;
   }
 
-  > button {
+  > #pdf-viewer-toggler {
     z-index: 9999;
     position: absolute;
     top: 85%;
     right: 2em;
     display: none;
+    transition: top 0.5s;
 
     @media screen and #{breakpoints.$mobile} {
       display: block;

@@ -12,6 +12,7 @@ function App() {
       <Main></Main>
       {isOutputVisible && <OutputResume></OutputResume>}
       <button
+        id="pdf-viewer-toggler"
         type="button"
         onClick={() => setOutputVisibility(!isOutputVisible)}
       >
