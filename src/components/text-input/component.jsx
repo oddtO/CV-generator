@@ -1,13 +1,16 @@
 import PropTypes from "prop-types";
 import styles from "./text-input.module.scss";
 import { useEffect, useRef } from "react";
+
+let timeoutId;
 const onfocusHandler = () => {
+  clearTimeout(timeoutId);
   const pdfToggler = document.querySelector("#pdf-viewer-toggler");
   pdfToggler.style.top = "250px";
 };
 const onblurHandler = () => {
   const pdfToggler = document.querySelector("#pdf-viewer-toggler");
-  setTimeout(() => (pdfToggler.style.top = ""), 500);
+  timeoutId = setTimeout(() => (pdfToggler.style.top = ""), 500);
 };
 export default function TextInput({
   labelText,
