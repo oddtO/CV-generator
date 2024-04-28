@@ -21,7 +21,6 @@ export const OutputCV = (props) => {
   });
 
   if (curInstance.loading) return <div>Loading</div>;
-  alert(curInstance.url);
   if (curInstance.error)
     return <div>Something went wrong: {curInstance.error}</div>;
   return <PDFHolder pdfUrl={curInstance.url}></PDFHolder>;
