@@ -28,7 +28,10 @@ export const OutputCV = (props) => {
   const memoData = useMemo(() => ({ data: pdfBinary }), [pdfBinary]);
   useEffect(() => {
     async function createPDF() {
-      const pdfBlob = await pdf(Hello(generalInfo["first-name"])).toBlob();
+      // const pdfBlob = await pdf(Hello(generalInfo["first-name"])).toBlob();
+      const pdfBlob = await pdf(
+        <Hello text={generalInfo["first-name"]} />,
+      ).toBlob();
       const buffer = await pdfBlob.arrayBuffer();
 
       prevComponentRef.current = buffer;

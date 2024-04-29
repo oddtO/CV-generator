@@ -9,7 +9,7 @@ export const GeneralInfoContext = createContext({
 
 export function GeneralInfoProvider({ children }) {
   const [generalInfo, setGeneralInfo] = useState({
-    "first-name": "hello",
+    "first-name": "",
     "last-name": "",
     "phone-number": "",
     email: "",
