@@ -1,7 +1,10 @@
 import { View, Text, usePDF, Document, Page } from "@react-pdf/renderer";
 import Hello from "../pdf-document/pdf-hello/hello.jsx";
 import { PDFHolder } from "../pdf-document/component.jsx";
+import { useGeneralInfo } from "../contexts/use-general-info.jsx";
+import { useEffect, useMemo, useRef, useState } from "react";
 
+import { pdf } from "@react-pdf/renderer";
 function getJSX(param1) {
   const MyDoc = (
     <Document>
@@ -15,13 +18,29 @@ function getJSX(param1) {
   return MyDoc;
 }
 
+let timerId;
 export const OutputCV = (props) => {
-  const [curInstance, updateInstance] = usePDF({
-    document: Hello("hello"),
-  });
+  const { generalInfo } = useGeneralInfo();
 
-  if (curInstance.loading) return <div>Loading</div>;
-  if (curInstance.error)
-    return <div>Something went wrong: {curInstance.error}</div>;
-  return <PDFHolder pdfUrl={curInstance.url}></PDFHolder>;
+  const [pdfBinary, setPDFbinary] = useState(null);
+
+  const prevComponentRef = useRef(null);
+  const memoData = useMemo(() => ({ data: pdfBinary }), [pdfBinary]);
+  useEffect(() => {
+    async function createPDF() {
+      const pdfBlob = await pdf(Hello(generalInfo["first-name"])).toBlob();
+      const buffer = await pdfBlob.arrayBuffer();
+
+      prevComponentRef.current = buffer;
+      setPDFbinary(new Uint8Array(buffer));
+    }
+
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => createPDF(), 1000);
+  }, [generalInfo]);
+
+  if (!prevComponentRef.current) return <div>Loading</div>;
+
+  return <PDFHolder pdfData={memoData}></PDFHolder>;
 };

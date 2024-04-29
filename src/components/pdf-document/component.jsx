@@ -11,7 +11,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
   import.meta.url,
 ).toString();
-export function PDFHolder({ pdfUrl }) {
+export function PDFHolder({ pdfData }) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [pageScale, setPageScale] = useState(0.5);
@@ -85,13 +85,9 @@ export function PDFHolder({ pdfUrl }) {
         <p className={styles["page-count"]}>
           Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
         </p>
-
-        <a href={pdfUrl} download="resume.pdf">
-          <img src={DownloadIcon} alt="download" />
-        </a>
       </div>
       <div className={styles.document} ref={parentRef}>
-        <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document file={pdfData} onLoadSuccess={onDocumentLoadSuccess}>
           <Page
             scale={pageScale}
             canvasBackground="transparent"
