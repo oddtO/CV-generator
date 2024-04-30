@@ -5,6 +5,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 import { usePDF } from "@react-pdf/renderer";
 import { pdfjs } from "react-pdf";
 import DownloadIcon from "../../assets/reshot-icon-download-WSU7RD256F.svg";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import styles from "./pdf-document.module.scss";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -85,7 +86,11 @@ export function PDFHolder({ pdfData }) {
         <p className={styles["page-count"]}>
           Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
         </p>
+        <a href={pdfData.url} download="resume.pdf">
+          <img src={DownloadIcon} alt="" />
+        </a>
       </div>
+
       <div className={styles.document} ref={parentRef}>
         <Document file={pdfData} onLoadSuccess={onDocumentLoadSuccess}>
           <Page

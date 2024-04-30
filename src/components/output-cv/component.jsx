@@ -22,28 +22,39 @@ let timerId;
 export const OutputCV = (props) => {
   const { generalInfo } = useGeneralInfo();
 
-  const [pdfBinary, setPDFbinary] = useState(null);
+  // const [pdfBinary, setPDFbinary] = useState(null);
 
+  const [instance, updateInstance] = usePDF({
+    document: <Hello text={generalInfo["first-name"]} />,
+  });
+  const [curPDFinstance, setCurPDFinstance] = useState(null);
   const prevComponentRef = useRef(null);
-  const memoData = useMemo(() => ({ data: pdfBinary }), [pdfBinary]);
+  // const memoData = useMemo(() => ({ data: pdfBinary }), [pdfBinary]);
   useEffect(() => {
     async function createPDF() {
       // const pdfBlob = await pdf(Hello(generalInfo["first-name"])).toBlob();
-      const pdfBlob = await pdf(
-        <Hello text={generalInfo["first-name"]} />,
-      ).toBlob();
-      const buffer = await pdfBlob.arrayBuffer();
 
-      prevComponentRef.current = buffer;
-      setPDFbinary(new Uint8Array(buffer));
+      updateInstance(<Hello text={generalInfo["first-name"]} />);
+      // const pdfBlob = await pdf(
+      //   <Hello text={generalInfo["first-name"]} />,
+      // ).toBlob();
+      // const buffer = await pdfBlob.arrayBuffer();
+      //
+      // prevComponentRef.current = buffer;
+      // setPDFbinary(new Uint8Array(buffer));
     }
 
     clearTimeout(timerId);
 
     timerId = setTimeout(() => createPDF(), 1000);
-  }, [generalInfo]);
+  }, [generalInfo, updateInstance]);
 
-  if (!prevComponentRef.current) return <div>Loading</div>;
+  useEffect(() => {
+    if (instance.loading) return;
 
-  return <PDFHolder pdfData={memoData}></PDFHolder>;
+    setCurPDFinstance(instance);
+  }, [instance, curPDFinstance]);
+  if (!curPDFinstance) return <div>Loading</div>;
+
+  return <PDFHolder pdfData={curPDFinstance}></PDFHolder>;
 };
