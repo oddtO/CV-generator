@@ -8,10 +8,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
     height: 140,
+    fontWeight: "normal",
   },
 
   name: {
-    fontWeight: "bold",
     fontSize: 40,
     textAlign: "center",
   },
