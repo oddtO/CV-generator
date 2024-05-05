@@ -13,7 +13,8 @@ export default function GeneralInfo({
   return (
     <View style={styles.intro}>
       <View style={styles.name}>
-        <Text>{firstName + " " + lastName}</Text>
+        <Text>{firstName}</Text>
+        <Text>{lastName}</Text>
       </View>
       <View style={styles.contactData}>
         <ContactItem imgSrc={PhoneIcon} text={phoneNumber}></ContactItem>

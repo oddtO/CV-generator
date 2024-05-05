@@ -1,5 +1,5 @@
 import { View, Text, usePDF, Document, Page } from "@react-pdf/renderer";
-import Hello from "../pdf-document/pdf-hello/hello.jsx";
+import ResumeViewer from "../pdf-document/resume-viewer/component.jsx";
 import { PDFHolder } from "../pdf-document/component.jsx";
 import { useGeneralInfo } from "../contexts/use-general-info.jsx";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -15,12 +15,11 @@ export const OutputCV = (props) => {
 
   const { skills } = useSkills();
   const { educations } = useEducation();
-  // const [pdfBinary, setPDFbinary] = useState(null);
 
   const { jobExperiences } = useWorkExperience();
   const getDoc = useCallback(
     () => (
-      <Hello
+      <ResumeViewer
         generalInfo={generalInfo}
         skills={skills}
         education={educations}
@@ -33,19 +32,9 @@ export const OutputCV = (props) => {
     document: getDoc(),
   });
   const [curPDFinstance, setCurPDFinstance] = useState(null);
-  // const memoData = useMemo(() => ({ data: pdfBinary }), [pdfBinary]);
   useEffect(() => {
     async function createPDF() {
-      // const pdfBlob = await pdf(Hello(generalInfo["first-name"])).toBlob();
-
       updateInstance(getDoc());
-      // const pdfBlob = await pdf(
-      //   <Hello text={generalInfo["first-name"]} />,
-      // ).toBlob();
-      // const buffer = await pdfBlob.arrayBuffer();
-      //
-      // prevComponentRef.current = buffer;
-      // setPDFbinary(new Uint8Array(buffer));
     }
 
     clearTimeout(timerId);

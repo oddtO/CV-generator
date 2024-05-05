@@ -5,7 +5,7 @@ import SkillsList from "../skills-list/component";
 import EducationList from "../education-list/component";
 import WorkExperienceList from "../work-experience-list/component";
 
-export default function Hello({
+export default function ResumeViewer({
   generalInfo,
   skills,
   education,
