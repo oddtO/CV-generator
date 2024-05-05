@@ -50,14 +50,14 @@ export default function Form() {
           value={generalInfo.email}
         ></TextInput>
       </FormSection>
+      <FormSection sectionName="Skills">
+        <SkillsList></SkillsList>
+      </FormSection>
       <FormSection sectionName="Education">
         <EducationList></EducationList>
       </FormSection>
       <FormSection sectionName="Work experience">
         <WorkExperienceList></WorkExperienceList>
-      </FormSection>
-      <FormSection sectionName="Skills">
-        <SkillsList></SkillsList>
       </FormSection>
     </form>
   );
