@@ -4,12 +4,13 @@ import ListItem from "../list-item/component";
 export default function EducationList({ data }) {
   return (
     <List header="Education">
-      {data.map((educationItem, index) => (
+      {data.map((educationItem) => (
         <ListItem
-          key={index}
-          period={educationItem.period}
-          enterprise={educationItem.enterprise}
-          speciality={educationItem.speciality}
+          key={educationItem.id}
+          from={educationItem.from}
+          to={educationItem.to}
+          enterprise={educationItem.school}
+          speciality={educationItem.degree}
         />
       ))}
     </List>

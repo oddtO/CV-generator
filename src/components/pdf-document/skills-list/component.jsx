@@ -6,8 +6,8 @@ export default function SkillsList({ data }) {
   return (
     <List header="Skills">
       <View style={styles.inliner}>
-        {data.map((skill, index) => (
-          <Text key={index}>{skill}</Text>
+        {data.map((skill) => (
+          <Text key={skill.id}>{skill.skill}</Text>
         ))}
       </View>
     </List>

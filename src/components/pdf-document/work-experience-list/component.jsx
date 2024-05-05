@@ -4,12 +4,15 @@ import ListItem from "../list-item/component";
 export default function WorkExperienceList({ data }) {
   return (
     <List header="Work Experience">
-      {data.map((workExperienceItem, index) => (
+      {data.map((workExperienceItem) => (
         <ListItem
-          key={index}
-          period={workExperienceItem.period}
-          enterprise={workExperienceItem.enterprise}
-          speciality={workExperienceItem.speciality}
+          key={workExperienceItem.id}
+          from={workExperienceItem.from}
+          to={
+            workExperienceItem.stillWorking ? "present" : workExperienceItem.to
+          }
+          enterprise={workExperienceItem.company}
+          speciality={workExperienceItem["job-title"]}
           description={
             workExperienceItem.description ? workExperienceItem.description : ""
           }

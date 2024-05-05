@@ -1,20 +1,10 @@
 import { useState } from "react";
 import styles from "../multi-list/at-middle-delete-btn.module.scss";
 import MultiList from "../multi-list/component";
+import { useSkills } from "../contexts/use-skills";
 
-class Skill {
-  static biggestId = 0;
-  static keyToLabelMap = new Map([["skill", "Skill"]]);
-  static keyToInputType = new Map([["skill", "text"]]);
-  constructor(skill = "") {
-    this.id = Skill.biggestId++;
-    this.skill = skill;
-  }
-}
-
-const defaultSkill = new Skill();
 export default function SkillsList() {
-  const [skills, setSkills] = useState([defaultSkill]);
+  const { skills, setSkills, Skill } = useSkills();
   return (
     <div className={styles["config-delete-btn"]}>
       <MultiList
