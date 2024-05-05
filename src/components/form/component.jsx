@@ -36,7 +36,7 @@ export default function Form() {
         ></TextInput>
         <TextInput
           type="tel"
-          regex="[\d-+]*"
+          regex="[\d\-+]*"
           labelText="Phone number"
           name="phone-number"
           value={generalInfo["phone-number"]}

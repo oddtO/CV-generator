@@ -31,11 +31,11 @@ export default function ListItem({
         <View style={styles.speciality}>
           <Text>{speciality}</Text>
         </View>
-        {description && (
+        {description ? (
           <View style={styles.description}>
             <Text>{description}</Text>
           </View>
-        )}
+        ) : null}
       </View>
     </View>
   );
