@@ -23,7 +23,12 @@ class Education {
   }
 }
 
-const defaultEducation = new Education();
+const defaultEducation = new Education(
+  "University of Science and Technology",
+  "Bachelor",
+  "2018-08-21",
+  "2022-07-20",
+);
 const { Context, Provider } = createCustomContext([defaultEducation]);
 
 function useEducation() {

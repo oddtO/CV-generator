@@ -11,8 +11,13 @@ class Skill {
   }
 }
 
-const defaultSkill = new Skill();
-const { Context, Provider } = createCustomContext([defaultSkill]);
+const defaultSkills = [
+  new Skill("HTML"),
+  new Skill("CSS"),
+  new Skill("JS"),
+  new Skill("React"),
+];
+const { Context, Provider } = createCustomContext(defaultSkills);
 
 function useSkills() {
   const { state, setState } = useContext(Context);

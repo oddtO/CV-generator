@@ -41,7 +41,13 @@ class JobPositionExperience {
   }
 }
 
-const defaultJobPosition = new JobPositionExperience();
+const defaultJobPosition = new JobPositionExperience(
+  "front-end developer",
+  "Google",
+  "2020-07-10",
+  "2021-08-10",
+  "some description",
+);
 
 const { Context, Provider } = createCustomContext([defaultJobPosition]);
 

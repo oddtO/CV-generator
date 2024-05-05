@@ -13,7 +13,11 @@ export const styles = StyleSheet.create({
 
   name: {
     fontSize: 40,
-    textAlign: "center",
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
   },
 
   contactData: {
