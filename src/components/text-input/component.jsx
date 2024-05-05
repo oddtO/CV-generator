@@ -20,42 +20,70 @@ export default function TextInput({
   value = "",
   type = "text",
   regex = ".*",
+  togglerToDefault = false,
+  togglerToDefaultText = "",
+  togglerToDefaultFieldName = "",
+  isDisabled = "",
 }) {
+  const inputRef = useRef(null);
+  const togglerRef = useRef(null);
   return (
-    <label htmlFor={name + dataId} className={styles["text-input"]}>
-      <span>{labelText}</span>
+    <>
+      <label htmlFor={name + dataId} className={styles["text-input"]}>
+        <span>{labelText}</span>
 
-      {type === "textarea" ? (
-        <textarea
-          onFocus={onfocusHandler}
-          onBlur={onblurHandler}
-          name={name + dataId}
-          id={name + dataId}
-          data-field-name={name}
-          pattern={regex}
-          onChange={onChange}
-          value={value}
-        ></textarea>
-      ) : (
-        <input
-          onFocus={onfocusHandler}
-          onBlur={onblurHandler}
-          type={type}
-          name={name + dataId}
-          id={name + dataId}
-          data-field-name={name}
-          pattern={regex}
-          onChange={onChange}
-          value={value}
-        />
+        {type === "textarea" ? (
+          <textarea
+            onFocus={onfocusHandler}
+            onBlur={onblurHandler}
+            name={name + dataId}
+            id={name + dataId}
+            data-field-name={name}
+            pattern={regex}
+            onChange={onChange}
+            value={value}
+            ref={inputRef}
+            disabled={isDisabled}
+          ></textarea>
+        ) : (
+          <input
+            onFocus={onfocusHandler}
+            onBlur={onblurHandler}
+            type={type}
+            name={name + dataId}
+            id={name + dataId}
+            data-field-name={name}
+            pattern={regex}
+            onChange={onChange}
+            value={value}
+            ref={inputRef}
+            disabled={isDisabled}
+          />
+        )}
+      </label>
+
+      {togglerToDefault && (
+        <label
+          className={styles["toggler-to-default"]}
+          htmlFor={"togglerToDefault" + "-" + name + "-" + dataId}
+        >
+          <input
+            ref={togglerRef}
+            type="checkbox"
+            data-field-name={togglerToDefaultFieldName}
+            name={"togglerToDefault" + "-" + name + "-" + dataId}
+            id={"togglerToDefault" + "-" + name + "-" + dataId}
+            onChange={() => {
+              const event = {
+                target: inputRef,
+                togglerRef: togglerRef.current,
+              };
+              onChange(event);
+            }}
+          />
+          {togglerToDefaultText}
+        </label>
       )}
-    </label>
+    </>
   );
 }
-
-TextInput.propTypes = {
-  labelText: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  regex: PropTypes.string,
-};

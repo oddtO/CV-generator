@@ -11,8 +11,17 @@ export default function MultiList({
 }) {
   const inputOnChangeFactory = (listItemId) => {
     return (e) => {
-      const propName = e.target.dataset.fieldName;
-      const val = e.target.value;
+      const togglerRef = e.togglerRef;
+      let propName;
+      let val;
+      if (togglerRef) {
+        propName = togglerRef.dataset.fieldName;
+        val = togglerRef.checked;
+      } else {
+        propName = e.target.dataset.fieldName;
+        val = e.target.value;
+      }
+
       setListItems(
         listItems.map((listItem) => {
           if (listItem.id !== listItemId) return listItem;
@@ -40,7 +49,13 @@ export default function MultiList({
             }}
           >
             {Object.keys(keyListItem)
-              .filter((key) => key !== "id")
+              .filter((key) => {
+                return !(
+                  key === "id" ||
+                  ListItemClass.keyToDefaultTogglerField?.get(key) === key ||
+                  ListItemClass.togglerKeys?.has(key)
+                );
+              })
               .map((key, index) => {
                 return (
                   <TextInput
@@ -51,6 +66,22 @@ export default function MultiList({
                     onChange={stateChanger}
                     value={keyListItem[key]}
                     type={ListItemClass.keyToInputType.get(key)}
+                    togglerToDefault={ListItemClass.keyToDefaultTogglerLabel?.has(
+                      key,
+                    )}
+                    togglerToDefaultText={ListItemClass.keyToDefaultTogglerLabel?.get(
+                      key,
+                    )}
+                    togglerToDefaultFieldName={ListItemClass.keyToDefaultTogglerField?.get(
+                      key,
+                    )}
+                    isDisabled={
+                      keyListItem[
+                        ListItemClass.keyToDefaultTogglerField?.get(key)
+                      ] === true
+                        ? "disabled"
+                        : ""
+                    }
                   ></TextInput>
                 );
               })}

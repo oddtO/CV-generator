@@ -25,6 +25,10 @@ label.text-input {
 
   > input,
   > textarea {
+    &:disabled {
+      color: transparent;
+    }
+
     border-radius: 1.5em;
     border: $border-width solid gray;
     outline: none;
@@ -38,4 +42,9 @@ label.text-input {
       border: $border-width solid #00fa00;
     }
   }
+}
+
+.toggler-to-default {
+  display: flex;
+  align-items: center;
 }
