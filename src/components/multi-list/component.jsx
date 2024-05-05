@@ -90,7 +90,15 @@ export default function MultiList({
       })}
       <button
         type="button"
-        onClick={() => setListItems([...listItems, new ListItemClass()])}
+        onClick={(e) => {
+          setListItems([...listItems, new ListItemClass()]);
+          setTimeout(() => {
+            e.target.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          });
+        }}
       >
         {addButtonText}
       </button>
