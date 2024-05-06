@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./multi-list.module.scss";
 import TextInput from "../text-input/component";
 import RemovableInputList from "../removable-input-list/component";
@@ -35,8 +35,10 @@ export default function MultiList({
     };
   };
 
+  const listRef = useRef(null);
+
   return (
-    <div className={styles["multi-list"]}>
+    <div className={styles["multi-list"]} ref={listRef}>
       {listItems.map((keyListItem) => {
         const stateChanger = inputOnChangeFactory(keyListItem.id);
         return (
@@ -92,11 +94,26 @@ export default function MultiList({
         type="button"
         onClick={(e) => {
           setListItems([...listItems, new ListItemClass()]);
+
+          const curForm = document.querySelector(
+            `form:has(.${styles["multi-list"]})`,
+          );
+          const formWrapper = curForm.parentElement;
           setTimeout(() => {
-            e.target.scrollIntoView({
-              behavior: "smooth",
-              block: "center",
-            });
+            const lastInputList =
+              listRef.current.children[listRef.current.children.length - 2];
+
+            const onAnimationEndCb = () => {
+              lastInputList.removeEventListener(
+                "animationend",
+                onAnimationEndCb,
+              );
+              const btnLastInputListOffset =
+                e.target.getBoundingClientRect().top -
+                lastInputList.getBoundingClientRect().top;
+              formWrapper.scrollBy(0, btnLastInputListOffset);
+            };
+            lastInputList.addEventListener("animationend", onAnimationEndCb);
           });
         }}
       >

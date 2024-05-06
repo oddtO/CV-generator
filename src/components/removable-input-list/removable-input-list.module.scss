@@ -14,22 +14,23 @@
   animation-fill-mode: both;
 }
 
-//animation to make element slide down when added:
-
 @keyframes slide-down {
   0% {
     opacity: 0;
     transform: scaleY(0);
+    margin-bottom: var(--animation-btn-slide);
   }
 
   70% {
     opacity: 0;
     transform: scaleY(0.7);
+    margin-bottom: -0.9em;
   }
 
   100% {
     opacity: 1;
     transform: scaleY(1);
+    margin-bottom: 0;
   }
 }
 
