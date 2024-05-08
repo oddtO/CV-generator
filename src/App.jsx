@@ -4,7 +4,7 @@ import Main from "./components/main/component";
 import { OutputResume } from "./components/output/component";
 import "./App.scss";
 import styles from "./App.module.scss";
-import PdfIcon from "./assets/pdf-svgrepo-com.svg";
+import PdfIcon from "./assets/pdf-svgrepo-com (1).svg";
 const isMobileWidth = window.matchMedia(styles.mobile).matches;
 // const isMobileWidth = true;
 function App() {
