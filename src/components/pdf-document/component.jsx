@@ -12,6 +12,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
   import.meta.url,
 ).toString();
+
+const loadingCb = () => {
+  return <div style={{ color: "white" }}>Loading PDF</div>;
+};
 export function PDFHolder({ pdfData }) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
@@ -92,7 +96,11 @@ export function PDFHolder({ pdfData }) {
       </div>
 
       <div className={styles.document} ref={parentRef}>
-        <Document file={pdfData} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document
+          loading={loadingCb}
+          file={pdfData}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
           <Page
             scale={pageScale}
             canvasBackground="transparent"

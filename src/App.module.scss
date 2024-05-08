@@ -1,0 +1,5 @@
+@use "breakpoints";
+
+:export {
+  mobile: breakpoints.$mobile;
+}

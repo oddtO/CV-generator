@@ -47,7 +47,8 @@ export const OutputCV = (props) => {
 
     setCurPDFinstance(instance);
   }, [instance, curPDFinstance]);
-  if (!curPDFinstance) return <div>Loading</div>;
+  if (!curPDFinstance)
+    return <div style={{ color: "white" }}>Loading PDF viewer</div>;
 
   return <PDFHolder pdfData={curPDFinstance}></PDFHolder>;
 };
