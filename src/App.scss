@@ -37,20 +37,26 @@
   > :nth-child(2) {
     flex: 2;
   }
+}
 
-  > #pdf-viewer-toggler {
-    z-index: 9999;
-    position: absolute;
-    top: 85%;
-    right: 2em;
-    display: none;
-    transition: top 0.5s;
+#pdf-viewer-toggler {
+  z-index: 9999;
+  position: absolute;
+  top: 85%;
+  right: 2em;
+  display: none;
+  transition: top 0.5s;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 
-    @media screen and #{breakpoints.$mobile} {
-      display: block;
-    }
+  > img {
+    width: 4em;
+    height: 4em;
+    object-fit: contain;
   }
 
-  @media screen and (width <= 900px) {
+  @media screen and #{breakpoints.$mobile} {
+    display: block;
   }
 }

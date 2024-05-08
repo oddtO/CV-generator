@@ -4,7 +4,7 @@ import Main from "./components/main/component";
 import { OutputResume } from "./components/output/component";
 import "./App.scss";
 import styles from "./App.module.scss";
-
+import PdfIcon from "./assets/pdf-svgrepo-com.svg";
 const isMobileWidth = window.matchMedia(styles.mobile).matches;
 // const isMobileWidth = true;
 function App() {
@@ -19,7 +19,7 @@ function App() {
         type="button"
         onClick={() => setOutputVisibility(!isOutputVisible)}
       >
-        Show/Hide
+        <img src={PdfIcon} alt="toggle pdf viewer" />
       </button>
     </>
   );
