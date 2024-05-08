@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import styles from "./removable-input-list.module.scss";
-import { CSSTransition } from "react-transition-group";
 export default function RemovableInputList({ removeFunc, children }) {
   const divRef = useRef();
   return (
