@@ -47,13 +47,17 @@
   display: none;
   transition: top 0.5s;
   background-color: white;
-  border: none;
+  border: 1px solid green;
   border-radius: 50%;
   cursor: pointer;
 
+  $btn-size: 0.8em;
+
+  padding: $btn-size;
+
   > img {
-    width: 4em;
-    height: 4em;
+    width: $btn-size * 4;
+    height: $btn-size * 4;
     object-fit: contain;
   }
 
