@@ -37,6 +37,7 @@
 //animation to make element slide up when removed:
 button.remover {
   background-image: url("../../assets/remove-svgrepo-com.svg");
+  background-repeat: no-repeat;
   appearance: none;
   background-color: transparent;
   border: none;
